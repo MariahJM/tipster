@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var billAmountField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    
+    @IBOutlet weak var numberOfPeopleField: UITextField!
+    
+    
+    
     //This is the function that gets run when the view is shown on the screen.
 
     override func viewDidLoad() {
@@ -39,17 +44,26 @@ class ViewController: UIViewController {
         //let tipAmount = NSString (string: billAmount!).doubleValue * 0.2
         //print(tipAmount)
         
-        let billAmount = NSString(string: billAmountField.text!).doubleValue
-        let tipAmount = billAmount * tipPercentage
-        let totalValue = billAmount + tipAmount
+        var numberofPeople = NSString(string:numberOfPeopleField.text!).doubleValue
         
+        
+        
+        if (numberofPeople < 1) {numberofPeople = 1}
+        
+        let billAmount = NSString(string: billAmountField.text!).doubleValue
+        let tipAmount = (billAmount * tipPercentage) / numberofPeople
+         let totalValue = (billAmount + tipAmount) / numberofPeople
+
         //print(tipAmount)
         //print(total)
     
+       
         tipAmountLabel.text = "$\(tipAmount)"
         total.text = "$\(totalValue)"
         print(tipControl.selectedSegmentIndex)
+        
     }
+
 
 }
 
